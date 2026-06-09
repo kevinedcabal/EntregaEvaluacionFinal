@@ -11,7 +11,7 @@ public class Ordenadores {
     private final static int DIVISOR = 2;
 
     public static void quickSort(List<Predio> lista, String columna) {
-        if (lista == null || lista.size() <= 1) return;
+        if (lista == null || lista.size() <= DESCENDENTE) return;
         quickSortRecursivo(lista, STATATICO, lista.size() - DESCENDENTE, columna);
     }
 
@@ -19,14 +19,14 @@ public class Ordenadores {
         if (bajo < alto) {
             int indiceParticion = particionHoare(lista, bajo, alto, columna);
             quickSortRecursivo(lista, bajo, indiceParticion, columna);
-            quickSortRecursivo(lista, indiceParticion + 1, alto, columna);
+            quickSortRecursivo(lista, indiceParticion + DESCENDENTE, alto, columna);
         }
     }
 
     private static int particionHoare(List<Predio> lista, int bajo, int alto, String columna) {
         String pivote = lista.get(bajo + (alto - bajo) / DIVISOR).getValorPorColumna(columna).toLowerCase();
-        int i = bajo - 1;
-        int j = alto + 1;
+        int i = bajo - DESCENDENTE;
+        int j = alto + DESCENDENTE;
 
         while (true) {
             do {
